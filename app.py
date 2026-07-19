@@ -7,8 +7,8 @@ from rag import search, generate, add_document, get_document_count, reset_collec
 
 
 app = Flask(__name__)
-app.secret_key = os.environ.get('SECRET_KEY', 'optimus-ai-secret-key-change-in-production')
-ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', '@!OPTIMUSXYZ')
+app.secret_key = os.environ.get('SECRET_KEY', 'dev-secret-key-change-me')
+ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD')
 
 
 def init_db():
