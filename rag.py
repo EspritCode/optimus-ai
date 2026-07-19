@@ -28,8 +28,8 @@ def get_llm():
     from llama_cpp import Llama
     _llm = Llama(
         model_path=MODEL_PATH,
-        n_ctx=512,
-        n_threads=2,
+        n_ctx=256,
+        n_threads=1,
         n_gpu_layers=0,
         verbose=False,
     )
@@ -144,7 +144,7 @@ def generate(query, context):
     ]
     response = llm.create_chat_completion(
         messages=messages,
-        max_tokens=300,
+        max_tokens=100,
         temperature=0.3,
         stop=['<|im_end|>', '</s>'],
     )

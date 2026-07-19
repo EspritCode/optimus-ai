@@ -97,6 +97,7 @@ def api_rag():
     try:
         answer = generate(query, context)
     except Exception as e:
+        app.logger.error(f'RAG error: {e}')
         return jsonify({'answer': f'Désolé, une erreur est survenue. Veuillez réessayer.'})
 
     return jsonify({'answer': answer})
