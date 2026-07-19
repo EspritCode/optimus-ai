@@ -1,0 +1,10 @@
+__pycache__
+*.pyc
+.env
+chroma_data
+models
+messages.db
+gemma-2b-it-q8_0.gguf
+llama-server.exe
+*.dll
+*.gguf

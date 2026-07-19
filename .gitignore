@@ -1,0 +1,16 @@
+__pycache__
+*.pyc
+.env
+chroma_data/
+models/
+messages.db
+*.gguf
+llama-server.exe
+*.dll
+*.exe
+.DS_Store
+node_modules/
+package-lock.json
+package.json
+stderr.txt
+stdout.txt
