@@ -120,12 +120,20 @@ def search(query, n_results=3):
 
 def generate(query, context):
     llm = get_llm()
-    system_prompt = (
-        "Tu es un assistant commercial pour Optimus AI, une entreprise spécialisée "
-        "dans l'automatisation intelligente et l'intelligence artificielle. "
-        "Réponds toujours en français. Utilise uniquement les informations du contexte fourni."
-    )
-    user_prompt = f"Contexte :\n{context}\n\nQuestion : {query}"
+    if context:
+        system_prompt = (
+            "Tu es un assistant commercial pour Optimus AI, une entreprise spécialisée "
+            "dans l'automatisation intelligente et l'intelligence artificielle. "
+            "Réponds toujours en français en utilisant uniquement le contexte fourni."
+        )
+        user_prompt = f"Contexte :\n{context}\n\nQuestion : {query}"
+    else:
+        system_prompt = (
+            "Tu es un assistant commercial pour Optimus AI, une entreprise spécialisée "
+            "dans l'automatisation intelligente et l'intelligence artificielle. "
+            "Réponds toujours en français de manière concise et utile."
+        )
+        user_prompt = query
     messages = [
         {'role': 'system', 'content': system_prompt},
         {'role': 'user', 'content': user_prompt},

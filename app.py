@@ -26,6 +26,13 @@ def init_db():
 
 init_db()
 
+# Auto-load knowledge base on startup if empty
+KB_FILE = os.path.join(os.path.dirname(__file__), 'basedeconnaissance.txt')
+if os.path.exists(KB_FILE) and get_document_count() == 0:
+    with open(KB_FILE, 'r', encoding='utf-8') as f:
+        content = f.read()
+    add_document(content, 'basedeconnaissance.txt')
+
 
 @app.route('/')
 def index():
@@ -85,11 +92,13 @@ def api_rag():
         return jsonify({'answer': 'Veuillez poser une question.'})
 
     docs = search(query)
-    if not docs:
-        return jsonify({'answer': 'Je ne trouve pas de réponse dans ma base de connaissances.'})
+    context = '\n\n'.join(docs) if docs else ''
 
-    context = '\n\n'.join(docs)
-    answer = generate(query, context)
+    try:
+        answer = generate(query, context)
+    except Exception as e:
+        return jsonify({'answer': f'Désolé, une erreur est survenue. Veuillez réessayer.'})
+
     return jsonify({'answer': answer})
 
 

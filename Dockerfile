@@ -16,9 +16,6 @@ RUN mkdir -p /app/models /app/chroma_data "/app/static/image carrousel"
 
 RUN python download_model.py
 
-ENV SECRET_KEY=change-me-in-production
-ENV ADMIN_PASSWORD=@!OPTIMUSXYZ
-
 EXPOSE 5000
 
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "2", "--timeout", "120", "app:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "1", "--timeout", "300", "app:app"]
