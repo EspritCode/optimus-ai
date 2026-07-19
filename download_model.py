@@ -3,7 +3,7 @@ from huggingface_hub import hf_hub_download
 
 MODEL_DIR = os.path.join(os.path.dirname(__file__), 'models')
 MODEL_REPO = 'Qwen/Qwen2.5-0.5B-Instruct-GGUF'
-MODEL_FILENAME = 'qwen2.5-0.5b-instruct-q4_k_m.gguf'
+MODEL_FILENAME = 'qwen2.5-0.5b-instruct-q2_k.gguf'
 
 os.makedirs(MODEL_DIR, exist_ok=True)
 

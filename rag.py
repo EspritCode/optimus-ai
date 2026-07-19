@@ -11,7 +11,7 @@ os.makedirs(CHROMA_DIR, exist_ok=True)
 os.makedirs(MODEL_DIR, exist_ok=True)
 
 MODEL_REPO = 'Qwen/Qwen2.5-0.5B-Instruct-GGUF'
-MODEL_FILENAME = 'qwen2.5-0.5b-instruct-q4_k_m.gguf'
+MODEL_FILENAME = 'qwen2.5-0.5b-instruct-q2_k.gguf'
 MODEL_PATH = os.path.join(MODEL_DIR, MODEL_FILENAME)
 
 _llm = None
@@ -28,12 +28,16 @@ def get_llm():
     from llama_cpp import Llama
     _llm = Llama(
         model_path=MODEL_PATH,
-        n_ctx=2048,
-        n_threads=4,
+        n_ctx=512,
+        n_threads=2,
         n_gpu_layers=0,
         verbose=False,
     )
     return _llm
+
+
+# Pre-load model at import time
+get_llm()
 
 
 def _download_model():
