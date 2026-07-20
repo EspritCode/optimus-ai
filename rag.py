@@ -28,7 +28,7 @@ def get_llm():
     from llama_cpp import Llama
     _llm = Llama(
         model_path=MODEL_PATH,
-        n_ctx=256,
+        n_ctx=2048,
         n_threads=1,
         n_gpu_layers=0,
         verbose=False,
@@ -114,7 +114,7 @@ def split_text(text, chunk_size, overlap):
     return chunks
 
 
-def search(query, n_results=3):
+def search(query, n_results=2):
     collection = get_collection()
     results = collection.query(query_texts=[query], n_results=n_results)
     if results['documents']:
