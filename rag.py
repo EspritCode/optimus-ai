@@ -28,7 +28,7 @@ def get_llm():
     from llama_cpp import Llama
     _llm = Llama(
         model_path=MODEL_PATH,
-        n_ctx=2048,
+        n_ctx=512,
         n_threads=1,
         n_gpu_layers=0,
         verbose=False,
@@ -102,7 +102,7 @@ def add_document(text, filename):
     return len(chunks)
 
 
-def split_text(text, chunk_size, overlap):
+def split_text(text, chunk_size=200, overlap=20):
     words = text.split()
     chunks = []
     start = 0
@@ -144,7 +144,7 @@ def generate(query, context):
     ]
     response = llm.create_chat_completion(
         messages=messages,
-        max_tokens=100,
+        max_tokens=50,
         temperature=0.3,
         stop=['<|im_end|>', '</s>'],
     )
