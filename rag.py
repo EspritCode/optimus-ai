@@ -125,6 +125,9 @@ def search(query, n_results=2):
 def generate(query, context):
     llm = get_llm()
     if context:
+        words = context.split()
+        if len(words) > 300:
+            context = ' '.join(words[:300])
         system_prompt = (
             "Tu es un assistant commercial pour Optimus AI, une entreprise spécialisée "
             "dans l'automatisation intelligente et l'intelligence artificielle. "
